@@ -1,5 +1,6 @@
 package it.gammainnovation.ms1gateway;
 
+import it.gammainnovation.librarymodel.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
