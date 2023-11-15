@@ -59,12 +59,14 @@ public class Controller {
         return foundBooks;
     }
 
-    @RequestMapping("/getDailyMenu")
-    public void getMenu(){
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/getDailyMenu")
+    public DailyMenu getMenu(){
         RestTemplate restTemplate = new RestTemplate();
         DailyMenu dailyMenu = restTemplate.getForObject("http://localhost:8082/getDailyMenuDB",DailyMenu.class);
         /*chiamerò il microservizio 2
          * Lui mi restiuirà il contenuto, lo memorizzo nel model menu
          * ma il service di visual studio, deve chiamare i metodi del back end*/
+        return dailyMenu;
     }
 }
