@@ -1,5 +1,6 @@
 package it.gammainnovation.ms1gateway;
 
+import it.gammainnovation.librarymodel.DailyMenu;
 import it.gammainnovation.librarymodel.User;
 import it.gammainnovation.librarymodel.Book;
 import org.springframework.web.bind.annotation.*;
@@ -56,5 +57,14 @@ public class Controller {
         ArrayList<Book> foundBooks = new ArrayList<>();
         /* [...] */
         return foundBooks;
+    }
+
+    @RequestMapping("/getDailyMenu")
+    public void getMenu(){
+        RestTemplate restTemplate = new RestTemplate();
+        DailyMenu dailyMenu = restTemplate.getForObject("http://localhost:8082/getDailyMenuDB",DailyMenu.class);
+        /*chiamerò il microservizio 2
+         * Lui mi restiuirà il contenuto, lo memorizzo nel model menu
+         * ma il service di visual studio, deve chiamare i metodi del back end*/
     }
 }
