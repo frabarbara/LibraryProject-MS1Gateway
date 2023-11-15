@@ -10,11 +10,18 @@ import java.util.ArrayList;
 @RestController
 public class Controller {
 
-    @PostMapping("/signup")
-    public User signUp(@RequestBody User newUser) {     //Angular service will send JSON object
+    RestTemplate rt;
 
-        RestTemplate myRestTemplate = new RestTemplate();
-        User signedUpUser = myRestTemplate.postForObject(
+    public Controller() {
+        this.rt = new RestTemplate();
+    }
+
+    @CrossOrigin(origins = {"http://localhost:4200"})
+    @PostMapping("/signup")
+    public User signup(@RequestBody User newUser) {     //Angular service will send JSON object
+        User signedUpUser;
+
+        signedUpUser = rt.postForObject(
                 "http://localhost:8083/signup",
                 newUser,
                 User.class
@@ -24,8 +31,18 @@ public class Controller {
     }
 
     @PostMapping("/login")
-    public String signIn(@RequestBody Object credentials) {
-        return "ciao";
+    public User login(@RequestBody User credentials) {
+        User loggedUser;
+
+        System.out.println("[MS2Controller:login] credentials: email " + credentials.getEmail() + "; password " + credentials.getPassword());
+
+        loggedUser = rt.postForObject(
+                "http://localhost:8083/login",
+                credentials,
+                User.class
+        );
+
+        return loggedUser;
     }
 
     @GetMapping("/library/booksearch")
