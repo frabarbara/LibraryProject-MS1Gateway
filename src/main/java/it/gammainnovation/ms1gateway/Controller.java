@@ -35,7 +35,7 @@ public class Controller {
     public User login(@RequestBody User credentials) {
         User loggedUser;
 
-        System.out.println("[MS2Controller:login] credentials: email " + credentials.getEmail() + "; password " + credentials.getPassword());
+        System.out.println("[MS1Controller:login] credentials: email " + credentials.getEmail() + "; password " + credentials.getPassword());
 
         loggedUser = rt.postForObject(
                 "http://localhost:8083/login",
