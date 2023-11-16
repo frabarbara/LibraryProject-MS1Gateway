@@ -1,8 +1,6 @@
 package it.gammainnovation.ms1gateway;
 
-import it.gammainnovation.librarymodel.DailyMenu;
-import it.gammainnovation.librarymodel.User;
-import it.gammainnovation.librarymodel.Book;
+import it.gammainnovation.librarymodel.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -68,5 +66,17 @@ public class Controller {
          * Lui mi restiuirà il contenuto, lo memorizzo nel model menu
          * ma il service di visual studio, deve chiamare i metodi del back end*/
         return dailyMenu;
+    }
+
+    @PostMapping("/booktable")
+    public void bookSeat(@RequestBody RestaurantTurn restaurantTurn){
+
+    }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/getRestaurantTurn")
+    public ArrayList<RestaurantTurn> getRestaurantTurn(){
+        RestTemplate restTemplate = new RestTemplate();
+        ArrayList<RestaurantTurn> restaurantTurn = restTemplate.getForObject("http://localhost:8082/getRestaurantTurn",ArrayList.class);
+        return restaurantTurn;
     }
 }
