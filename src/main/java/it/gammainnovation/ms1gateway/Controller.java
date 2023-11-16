@@ -29,6 +29,7 @@ public class Controller {
         return signedUpUser;
     }
 
+    @CrossOrigin(origins = {"http://localhost:4200"})
     @PostMapping("/login")
     public User login(@RequestBody User credentials) {
         User loggedUser;
@@ -44,6 +45,7 @@ public class Controller {
         return loggedUser;
     }
 
+    @CrossOrigin(origins = {"http://localhost:4200"})
     @GetMapping("/library/booksearch")
     public ArrayList<Book> searchBook(
             @RequestParam String title,
